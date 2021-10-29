@@ -1,0 +1,47 @@
+/*
+| ================== Facility Inc ================= |
+|    RM84758 - Andr� Loren��o                       |
+|    RM84707 - Karlos Miguel Silva Lima             |
+|    RM84841 - Luca Gouveia Leiva de Labio          |
+|    RM84276 - Mateus dos Santos Tor�               |
+|    RM83233 - Pedro Henrique dos Santos Thomaz     |
+|    RM84573 - Stephane Cristini Ribeiro Fernandes  |
+| ================================================= |   
+*/
+
+
+
+
+CREATE TABLE Clientes
+ ( IdCliente   NUMBER(10), 
+   nome        VARCHAR2(60) NOT NULL,
+   sexocliente CHAR(01)     NOT NULL,
+   email       VARCHAR2(60) NOT NULL,
+   CONSTRAINT PK_Cliente PRIMARY KEY (IdCliente), 
+   CONSTRAINT CH_Cliente CHECK (SexoCliente IN ('F', 'M')));
+
+
+
+CREATE TABLE Documentos
+ ( IdDocumento     NUMBER(10), 
+   IdCliente       NUMBER(10),
+   TipoDocumento   VARCHAR2(25)  NOT NULL,
+   NumeroDocumento VARCHAR2(15)  NOT NULL,
+   CONSTRAINT PK_Documento PRIMARY KEY (IdDocumento), 
+   CONSTRAINT FK_IdCliente FOREIGN KEY (IdCliente) REFERENCES Clientes (IdCliente));
+
+
+
+
+--INSERTS
+
+INSERT INTO Clientes VALUES(1, 'Mateus Toré', 'M', 'mateustore23@gmail.com');
+INSERT INTO Clientes VALUES(2, 'Fernanda Radlinks', 'F', 'xxxxxx@gmail.com');
+INSERT INTO Clientes VALUES(3, 'Salvio', 'm', 'profsalvio@fiap.com.br');
+
+
+
+INSERT INTO Documentos VALUES(1, 1, 'RG', '12.345.678.9');
+INSERT INTO Documentos VALUES(2, 2, 'CPF', '111.900.543-00');
+INSERT INTO Documentos VALUES(3, 3, 'RG', '55.252.321.0');
+
